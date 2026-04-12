@@ -4,6 +4,8 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import WorkshopStatus from './pages/WorkshopStatus'
+import WorkshopTypes from './pages/WorkshopTypes'
+
 
 
 export default function App() {
@@ -15,6 +17,7 @@ export default function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="status" element={<WorkshopStatus />} />
+          <Route path="types" element={<WorkshopTypes />} />
 
         </Route>
       </Routes>
