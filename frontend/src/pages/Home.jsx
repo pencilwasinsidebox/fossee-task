@@ -2,7 +2,7 @@ export default function Home() {
   const user = { name: 'user' }
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-8">
+    <div className="min-h-screen bg-white px-4 py-8">
       <div className="max-w-2xl mx-auto">
 
         <div className="bg-white rounded-xl border border-gray-200 px-8 py-10">
@@ -48,7 +48,7 @@ export default function Home() {
 
 function QuickLink({ title, desc, to }) {
   return (
-    <a href={to} className="block bg-white border border-gray-200 rounded-xl px-5 py-4 hover:border-gray-300 hover:shadow-sm transition-all">
+    <a href={to} className="block bg-white border border-gray-200 rounded-xl px-5 py-4 hover:border-[#e85d04] hover:shadow-sm transition-all">
       <p className="text-sm font-medium text-gray-800 mb-1">{title}</p>
       <p className="text-xs text-gray-400 leading-relaxed">{desc}</p>
     </a>
