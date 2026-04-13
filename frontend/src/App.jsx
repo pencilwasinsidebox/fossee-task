@@ -7,6 +7,7 @@ import WorkshopStatus from './pages/WorkshopStatus'
 import WorkshopTypes from './pages/WorkshopTypes'
 import WorkshopStatistics from './pages/WorkshopStatistics'
 import TeamStatistics from './pages/TeamStatistics'
+import ProposeWorkshop from './pages/ProposeWorkshop'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="types" element={<WorkshopTypes />} />
           <Route path="statistics" element={<WorkshopStatistics />} />
           <Route path="teams" element={<TeamStatistics />} />
+          <Route path="propose" element={<ProposeWorkshop />} />        
         </Route>
       </Routes>
     </BrowserRouter>
