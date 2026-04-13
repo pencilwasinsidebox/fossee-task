@@ -9,6 +9,7 @@ import WorkshopStatistics from './pages/WorkshopStatistics'
 import TeamStatistics from './pages/TeamStatistics'
 import ProposeWorkshop from './pages/ProposeWorkshop'
 import WorkshopDetails from './pages/WorkshopDetails'
+import ViewProfile from './pages/ViewProfile'
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="teams" element={<TeamStatistics />} />
           <Route path="propose" element={<ProposeWorkshop />} />    
           <Route path="workshop/:id" element={<WorkshopDetails />} />
+          <Route path="profile" element={<ViewProfile />} />
     
         </Route>
       </Routes>

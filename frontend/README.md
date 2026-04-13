@@ -1,16 +1,99 @@
-# React + Vite
+# FOSSEE Workshops - UI/UX Enhancement
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A mobile-first redesign of the FOSSEE Workshops Django web app, rebuilt as a modern React + Tailwind CSS frontend.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Setup Instructions
+```bash
+# Install dependencies
+npm install
 
-## React Compiler
+# Start the development server
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Design Principles
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Mobile-first**: Every page was built for small screens first, then scaled up. Students primarily access this on phones.
+- **Visual hierarchy**: Clear headings, muted secondary text, and consistent spacing guide the eye naturally.
+- **FOSSEE brand colors**: Used the official orange `#e85d04` from fossee.in for buttons, active states, and accents.
+- **Minimal clutter**: Replaced Bootstrap's heavy table-heavy layouts with clean cards, clean tables, and whitespace.
+- **Accessible**: Semantic HTML, proper labels on inputs, aria-label on icon buttons.
+
+---
+
+## Responsiveness
+
+- Tailwind's responsive prefixes (`md:`, `sm:`) used throughout, navbar collapses to hamburger on mobile, grids stack to single column.
+- Tested on iPhone 12 Pro (390px) using Chrome DevTools.
+- `overflow-x-auto` on all tables so they scroll horizontally on small screens instead of breaking layout.
+- Fixed navbar with `pt-14` on main content so nothing hides behind it on any screen size.
+
+---
+
+## Trade-offs
+
+| Decision | Trade-off |
+|---|---|
+| Hardcoded placeholder data | Real API integration left for later — kept frontend concerns separate |
+| No animations | Kept load times fast, no unnecessary JS |
+| Tailwind over CSS modules | Faster to build, classes can get verbose but readable |
+| React Router for navigation | Adds a dependency but gives clean client-side routing |
+
+---
+
+## Challenges
+
+**Biggest challenge**: Getting Tailwind v3 working with Vite from scratch. The `content` array in `tailwind.config.js` was empty by default, so no styles were generating. Solved by pointing it to `./src/**/*.{js,jsx}`.
+
+**Second challenge**: Rebuilding the Django template's dynamic data (user auth, workshop lists, comments) as static React state, had to think carefully about component structure so it's easy to wire up to a real API later.
+
+**Approach**: I rebuilt the legacy Django UI into modular React components with a strict mobile-first mindset. Since the web is mostly used on mobile, I prioritized responsive card layouts over heavy tables, using Tailwind to ensure the site is snappy, accessible, and aligned with FOSSEE’s official branding.
+
+---
+
+## Before & After
+
+### Home Page
+| Before | After |
+|---|---|
+| ![before](./screenshots/old-homepage.png) | ![after](./screenshots/homepage-desktop.png) |
+
+### Login Page
+| Before | After |
+|---|---|
+| ![before]() | ![after]() |
+
+### Navbar
+| Before | After |
+|---|---|
+| ![before]() | ![after]() |
+
+> Screenshots are in the `/screenshots` folder.
+
+---
+
+## Pages Built
+
+- Home (dashboard with stat cards + activity feed)
+- Login
+- Register
+- Workshop Status
+- Workshop Types
+- Workshop Statistics
+- Team Statistics
+- Propose Workshop
+- Workshop Details
+- View Profile
+
+---
+
+## Stack
+
+- React 18 + Vite
+- Tailwind CSS v3
+- React Router v6
+
