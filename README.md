@@ -17,7 +17,7 @@ npm run dev
 
 ## Design Principles
 
-- **Mobile-first**: Every page was built for small screens first, then scaled up. Students primarily access this on phones.
+- **Mobile-first**: Every page was built for small screens first, then scaled up. As it was mentioned the website is primarily accessed on phones.
 - **Visual hierarchy**: Clear headings, muted secondary text, and consistent spacing guide the eye naturally.
 - **FOSSEE brand colors**: Used the official orange `#e85d04` from fossee.in for buttons, active states, and accents.
 - **Minimal clutter**: Replaced Bootstrap's heavy table-heavy layouts with clean cards, clean tables, and whitespace.
@@ -38,7 +38,7 @@ npm run dev
 
 | Decision | Trade-off |
 |---|---|
-| Hardcoded placeholder data | Real API integration left for later — kept frontend concerns separate |
+| Hardcoded placeholder data | Real API integration left for later, kept frontend concerns separate |
 | No animations | Kept load times fast, no unnecessary JS |
 | Tailwind over CSS modules | Faster to build, classes can get verbose but readable |
 | React Router for navigation | Adds a dependency but gives clean client-side routing |

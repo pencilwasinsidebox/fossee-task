@@ -36,76 +36,88 @@ export default function TeamStatistics() {
   const maxVal = Math.max(...team.members.map(m => m.workshops))
 
   return (
-    <div className="min-h-screen bg-white px-4 py-8">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen bg-gray-50 px-3 sm:px-6 py-6 sm:py-8">
+      <div className="max-w-6xl mx-auto">
 
-        <div className="mb-8">
-          <h1 className="text-2xl font-medium text-gray-900">Team Statistics</h1>
+        <div className="mb-6">
+          <h1 className="text-xl sm:text-2xl font-medium text-gray-900">Team Statistics</h1>
           <p className="text-sm text-gray-400 mt-1">Workshops conducted per team member</p>
         </div>
 
-        <div className="flex gap-6">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-6 md:items-start">
 
-          <div className="w-36 shrink-0">
+          {/* sidebar */}
+          <div className="w-full md:w-48 flex-shrink-0">
             <p className="text-xs text-gray-400 uppercase tracking-wide mb-2">Teams</p>
-            <ul className="flex flex-col gap-1">
+            <div className="flex flex-row md:flex-col gap-2 overflow-x-auto pb-1">
               {teams.map((t, i) => (
-                <li key={t.id}>
-                  <button
-                    onClick={() => setActiveTeam(t.id)}
-                    className={`w-full text-left text-sm px-3 py-2 rounded-lg transition-colors ${
-                      activeTeam === t.id
-                        ? 'bg-[#e85d04] text-white'
-                        : 'text-gray-600 hover:bg-gray-100'
-                    }`}
-                  >
-                    Team {i + 1}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="flex-1 border border-gray-200 rounded-xl p-6">
-            <p className="text-sm text-gray-500 mb-6">
-              Team {activeTeam} — workshops per member
-            </p>
-
-            <div className="flex items-end gap-3 h-48 mb-4">
-              {team.members.map((m, i) => (
-                <div key={i} className="flex-1 flex flex-col items-center gap-1">
-                  <span className="text-xs text-gray-400">{m.workshops}</span>
-                  <div
-                    className="w-full bg-[#e85d04] rounded-t opacity-80 hover:opacity-100 transition-opacity"
-                    style={{ height: `${(m.workshops / maxVal) * 100}%` }}
-                  />
-                  <span className="text-xs text-gray-400 text-center leading-tight">{m.name.split(' ')[0]}</span>
-                </div>
+                <button
+                  key={t.id}
+                  onClick={() => setActiveTeam(t.id)}
+                  className={`shrink-0 text-sm px-4 py-2 rounded-lg transition-colors border ${
+                    activeTeam === t.id
+                      ? 'bg-[#e85d04] text-white border-[#e85d04]'
+                      : 'text-gray-600 border-gray-200 bg-white hover:border-gray-300'
+                  }`}
+                >
+                  Team {i + 1}
+                </button>
               ))}
             </div>
+          </div>
 
-            <div className="border-t border-gray-100 pt-4 mt-2">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="text-left">
-                    <th className="text-xs font-medium text-gray-500 uppercase tracking-wide pb-2">Member</th>
-                    <th className="text-xs font-medium text-gray-500 uppercase tracking-wide pb-2">Workshops</th>
-                  </tr>
-                </thead>
-                <tbody>
+          {/* main */}
+          <div className="flex-1 min-w-0 w-full">
+
+            <div className="bg-white border border-gray-200 rounded-xl p-4 sm:p-6 mb-4">
+              <p className="text-sm text-gray-500 mb-6">
+                Team {activeTeam}: workshops per member
+              </p>
+
+              {/* bar chart */}
+              <div className="overflow-x-auto mb-6">
+                <div className="flex items-end gap-2" style={{ height: '140px', minWidth: `${team.members.length * 60}px` }}>
                   {team.members.map((m, i) => (
-                    <tr key={i} className="border-t border-gray-100">
-                      <td className="py-2 text-gray-700">{m.name}</td>
-                      <td className="py-2 text-gray-600">{m.workshops}</td>
-                    </tr>
+                    <div key={i} className="flex-1 flex flex-col items-center gap-0.5" style={{ height: '100%' }}>
+                      <div className="flex-1 w-full flex items-end">
+                        <div
+                          className="w-full bg-[#e85d04] rounded-t hover:opacity-75 transition-opacity"
+                          style={{ height: `${(m.workshops / maxVal) * 100}%`, minHeight: '4px' }}
+                          title={`${m.name}: ${m.workshops}`}
+                        />
+                      </div>
+                      <span className="text-[10px] text-gray-400 leading-none">{m.workshops}</span>
+                      <span className="text-[10px] text-gray-400 leading-none truncate w-full text-center">
+                        {m.name.split(' ')[0]}
+                      </span>
+                    </div>
                   ))}
-                </tbody>
-              </table>
+                </div>
+              </div>
+
+              {/* table */}
+              <div className="border-t border-gray-100 pt-4">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-left">
+                      <th className="text-xs font-medium text-gray-500 uppercase tracking-wide pb-3">Member</th>
+                      <th className="text-xs font-medium text-gray-500 uppercase tracking-wide pb-3">Workshops</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {team.members.map((m, i) => (
+                      <tr key={i} className="border-t border-gray-100">
+                        <td className="py-2.5 text-gray-700">{m.name}</td>
+                        <td className="py-2.5 text-gray-600">{m.workshops}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
+
           </div>
-
         </div>
-
       </div>
     </div>
   )
