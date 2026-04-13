@@ -50,7 +50,7 @@ export default function WorkshopStatus() {
           <Table
             cols={['Coordinator', 'Institute', 'Workshop', 'Date', 'Status']}
             rows={accepted.map(w => [
-              w.coordinator,
+              <a href={`/workshop/${w.id}`} className="text-[#e85d04] hover:underline">{w.coordinator}</a>,
               w.institute,
               w.workshop,
               w.date,
@@ -63,7 +63,7 @@ export default function WorkshopStatus() {
           <Table
             cols={['Coordinator', 'Institute', 'Workshop', 'Date', 'Status', 'Action']}
             rows={proposed.map(w => [
-              w.coordinator,
+              <a href={`/workshop/${w.id}`} className="text-[#e85d04] hover:underline">{w.coordinator}</a>,
               w.institute,
               w.workshop,
               w.date,
