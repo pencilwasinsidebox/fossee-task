@@ -24,47 +24,65 @@ export default function WorkshopTypes() {
     <div className="min-h-screen bg-white px-4 py-8">
       <div className="max-w-4xl mx-auto">
 
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-start justify-between mb-6 gap-4">
           <div>
             <h1 className="text-2xl font-medium text-gray-900">Workshop Types</h1>
             <p className="text-sm text-gray-400 mt-1">Available workshops you can propose</p>
           </div>
           {isInstructor && (
-          <a href="/types/add" className="text-sm bg-[#e85d04] text-white px-4 py-2 rounded-lg hover:bg-[#c94d00] transition-colors">
-            Add Workshop Type
-          </a>
-        )}
-          
+            <a href="/types/add" className="shrink-0 text-sm bg-[#e85d04] text-white px-4 py-2 rounded-lg hover:bg-[#c94d00] transition-colors">
+              Add Workshop Type
+            </a>
+          )}
         </div>
 
-        <div className="border border-gray-200 rounded-xl overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-gray-50 border-b border-gray-200">
-                  <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wide w-12">Sr</th>
-                  <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Workshop Name</th>
-                  <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Duration (Days)</th>
-                  <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {visible.map((w, i) => (
-                  <tr key={w.id} className="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors">
-                    <td className="px-4 py-3 text-gray-400">{(page - 1) * PER_PAGE + i + 1}</td>
-                    <td className="px-4 py-3 text-gray-800 font-medium">{w.name}</td>
-                    <td className="px-4 py-3 text-gray-600">{w.duration}</td>
-                    <td className="px-4 py-3">
-                      
+        {/* mobile cards */}
+        <div className="flex flex-col gap-3 md:hidden">
+          {visible.map((w, i) => (
+            <div key={w.id} className="border border-gray-200 rounded-xl px-5 py-4 flex items-center justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-xs text-gray-400">#{(page - 1) * PER_PAGE + i + 1}</span>
+                  <span className="text-sm font-medium text-gray-800">{w.name}</span>
+                </div>
+                <span className="text-xs text-gray-400">{w.duration} day{w.duration > 1 ? 's' : ''}</span>
+              </div>
+              
+                <a href={`/types/${w.id}`}
+                className="shrink-0 text-xs text-[#e85d04] border border-[#e85d04] px-3 py-1.5 rounded-lg hover:bg-orange-50 transition-colors"
+              >
+                View Details
+              </a>
+            </div>
+          ))}
+        </div>
+
+        {/* desktop table */}
+        <div className="hidden md:block border border-gray-200 rounded-xl overflow-hidden">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-gray-50 border-b border-gray-200">
+                <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wide w-12">Sr</th>
+                <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Workshop Name</th>
+                <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Duration (Days)</th>
+                <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {visible.map((w, i) => (
+                <tr key={w.id} className="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors">
+                  <td className="px-4 py-3 text-gray-400">{(page - 1) * PER_PAGE + i + 1}</td>
+                  <td className="px-4 py-3 text-gray-800 font-medium">{w.name}</td>
+                  <td className="px-4 py-3 text-gray-600">{w.duration}</td>
+                  <td className="px-4 py-3">
                     <a href={`/types/${w.id}`} className="text-xs text-[#e85d04] border border-[#e85d04] px-3 py-1 rounded-lg hover:bg-orange-50 transition-colors">
                       View Details
                     </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         <div className="flex items-center justify-between mt-4 text-sm text-gray-500">

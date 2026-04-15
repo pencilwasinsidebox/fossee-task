@@ -63,6 +63,8 @@ npm run dev
 
 > Screenshots are in the `/screenshots` folder.
 
+[Demo Video Link](https://drive.google.com/file/d/1eON_3ezhCRZutN59BEoq_NbliLz19pta/view?usp=sharing)
+
 ---
 
 ## Pages Built
@@ -85,4 +87,3 @@ npm run dev
 - React 18 + Vite
 - Tailwind CSS v3
 - React Router v6
-
